@@ -25,7 +25,7 @@ public class CabinRepository {
 
             return cabinCrudRepository.findById(id);
         }
-//cabins
+
         public Cabin save(Cabin cabin){
 
             return cabinCrudRepository.save(cabin);

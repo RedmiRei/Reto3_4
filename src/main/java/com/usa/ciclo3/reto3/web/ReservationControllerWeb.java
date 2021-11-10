@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import com.usa.ciclo3.reto3.model.Reservation;
+import com.usa.ciclo3.reto3.reports.CounterClients;
+import com.usa.ciclo3.reto3.reports.StatusReservation;
 import com.usa.ciclo3.reto3.services.ReservationServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -60,5 +62,21 @@ public class ReservationControllerWeb {
                 reservationServices.deleteReservation(idReservation);
     }
 
+    @GetMapping("/report-status")
+    public StatusReservation getReservationsStatusReport(){
+        return reservationServices.getReservationStatusReport();
+    }
+
+    @GetMapping("/report-dates/{dateOne}/{dateTwo}")
+    public List<Reservation> getReservationsReportDates(@PathVariable("dateOne") String dateOne, @PathVariable("dateTwo") String dateTwo){
+        return reservationServices.getReservationPeriod(dateOne, dateTwo);
+    }
+
+    @GetMapping("/report-clients")
+    public List<CounterClients> getClients() {
+        return reservationServices.getTopClients();
+
+
+    }
 }
 
